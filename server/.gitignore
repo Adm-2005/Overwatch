@@ -1,0 +1,8 @@
+# env files
+venv/
+
+# cache files
+__pycache__/
+
+# config files
+.env
