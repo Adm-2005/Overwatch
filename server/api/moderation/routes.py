@@ -7,7 +7,6 @@ from api.moderation import mod_bp
 from api.moderation.services import classify_image, classify_text_messages
 from api.moderation.models import Message, FlaggedMessage, Alert, MarkedUser
 
-
 @mod_bp.route('/analyse', methods=['POST'])
 def analyse_messages():
     try:

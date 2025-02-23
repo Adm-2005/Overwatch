@@ -8,8 +8,8 @@ from typing import Optional, List, Dict, Any
 from werkzeug.security import check_password_hash, generate_password_hash
 
 # internal imports
-from db.base_models import Serialization
-from db.pydantic_objectid import PydanticObjectId
+from api.db.base_models import Serialization
+from api.db.pydantic_objectid import PydanticObjectId
 
 class Platform(Enum):
     DISCORD = 'discord'

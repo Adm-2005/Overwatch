@@ -6,15 +6,14 @@ from logging.config import dictConfig
 from flask_jwt_extended import JWTManager
 
 # internal imports
-from config import Config
-from errors import register_error_handlers
-from api.discord.utils import start_discord_bot
+from api.config import Config
+from api.errors import register_error_handlers
 
 mongo = PyMongo()
 jwt = JWTManager()
 
 def create_app(config_object: Config) -> Flask:
-    dictConfig(config_object.LOGGING_INFO)
+    dictConfig(config_object.LOGGING_CONFIG)
 
     app = Flask(__name__)
     app.config.from_object(config_object)
@@ -42,10 +41,17 @@ def create_app(config_object: Config) -> Flask:
     app.register_blueprint(tele_bp, url_prefix='/telegram')
     app.register_blueprint(mod_bp, url_prefix='/moderation')
 
-    # starting bots for all active and connected discord servers 
-    active_servers = mongo.db.discord_servers.find({ 'active': 'True' })
+    # starting bots for all active and connected platform groups 
+    from api.discord.utils import start_discord_bot
+    from api.telegram.utils import start_telegram_bot
 
-    for server in active_servers:
-        start_discord_bot(server.server_id)
+    active_discord_servers = mongo.db.discord_servers.find({ 'active': True })
+    active_telegram_groups = mongo.db.telegram_groups.find({ 'active': True })
+
+    for server in active_discord_servers:
+        start_discord_bot(server["server_id"])
+
+    for group in active_telegram_groups:
+        start_telegram_bot(group["group_id"], group["bot_token"])
 
     return app

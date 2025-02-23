@@ -8,7 +8,7 @@ class Config:
     TESTING = os.getenv('TESTING').lower() in ['true', 'yes', 'ok']
     API_URL = os.getenv('API_URL')
     CLIENT_URL = os.getenv('CLIENT_URL')
-    MONGODB_URI = os.getenv('MONGODB_URI')
+    MONGO_URI = os.getenv('MONGODB_URI')
     JWT_SECRET = os.getenv('JWT_SECRET')
     SECRET_KEY = os.getenv('SECRET_KEY')
     DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')

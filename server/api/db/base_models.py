@@ -6,7 +6,7 @@ from typing import Dict, Any, Optional
 from fastapi.encoders import jsonable_encoder
 
 # internal imports
-from db.pydantic_objectid import PydanticObjectId
+from api.db.pydantic_objectid import PydanticObjectId
 
 class Serialization(BaseModel):
     """Defines json and bson serialization methods."""
@@ -27,4 +27,4 @@ class PlatformGroup(Serialization):
     name: str
     owner_id: str
     active: bool = True
-    created_at: datetime = Field(default_factory=datetime.now(tz=pytz.timezone('Asia/Kolkata')))
+    created_at: datetime = Field(default_factory=lambda:datetime.now(tz=pytz.timezone('Asia/Kolkata')))
