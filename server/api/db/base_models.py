@@ -28,11 +28,3 @@ class PlatformGroup(Serialization):
     owner_id: str
     active: bool = True
     created_at: datetime = Field(default_factory=datetime.now(tz=pytz.timezone('Asia/Kolkata')))
-
-class Message(Serialization):
-    id: Optional[PydanticObjectId] = Field(alias='_id', default=None)
-    user_id: str
-    username: str 
-    group_id: Optional[PydanticObjectId] = Field(default=None)
-    content: str
-    timestamp: datetime

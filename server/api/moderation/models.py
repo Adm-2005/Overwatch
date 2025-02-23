@@ -14,6 +14,11 @@ class Action(Enum):
     WARNED = 'warned'
     BANNED = 'banned'
 
+class Severity(Enum):
+    HIGH = 'high'
+    MODERATE = 'moderate'
+    LOW = 'low'
+
 class Message(Serialization):
     """Stores messages sent in groups."""
     id: Optional[PydanticObjectId] = Field(alias='_id', default=None)
@@ -27,6 +32,7 @@ class Message(Serialization):
 class FlaggedMessage(Message):
     """Stores flagged messages after AI analysis."""
     reason: str 
+    severity: Optional[Severity] = Field(default=None)
     reviewed: bool = False
     action_taken: Optional[Action] = Field(default=None)
 

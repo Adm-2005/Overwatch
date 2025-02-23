@@ -20,7 +20,7 @@ Overwatch consists of two key components:
 - **Frontend**: React.js, TailwindCSS
 - **Backend**: Flask
 - **Database**: MongoDB
-- **AI/ML**: PyTorch
+- **AI/ML**: Transformers, Yolo v8
 <!-- - **Message Processing**: Redis (for real-time queue handling)
 - **Search & Analytics**: Elasticsearch (for analyzing flagged messages) -->
 
