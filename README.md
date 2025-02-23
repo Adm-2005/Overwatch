@@ -1,18 +1,17 @@
 # Overwatch
 
 ## Overview
-**Note: This project was created for **DU Hacks**.
+**Note: This project was created for **DU Hacks 4.0**.
 
 **Overwatch** is an AI-powered cyber-monitoring system designed to detect and flag illicit activities and cyberbullying on messaging platforms. The system analyzes communication patterns, user behavior, and linguistic cues to identify suspicious activities, providing real-time alerts to law enforcement or platform moderators.
 
 Overwatch consists of two key components:
-1. **Embedded Wrapper** – A module that integrates with messaging platforms (e.g., Discord, Telegram, Facebook) to analyze conversations in real-time.
+1. **Embedded Wrapper** – A module that integrates with messaging platforms (e.g., Discord, Telegram) to analyze conversations in real-time.
 2. **Web Interface** – A dashboard for moderators and law enforcement to review flagged messages, track offenders, and take necessary actions.
 
 ## Features
 - **Real-time Message Analysis**: Uses NLP and AI models to detect harmful messages.
 - **Cross-Platform Integration**: Supports Discord, Telegram, and Facebook.
-- **Federated Learning**: Ensures privacy by processing messages locally before sending minimal necessary data for analysis.
 - **User Behavior Profiling**: Identifies repeated offenders and potential risks.
 - **Moderator Dashboard**: Provides insights, flagged messages, and action options.
 - **Alert System**: Sends instant notifications when high-risk messages are detected.
@@ -62,9 +61,9 @@ npm start
 ## API Endpoints
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| `POST` | `/analyze` | Analyzes a message and returns risk score |
-| `GET` | `/flagged` | Retrieves flagged messages for review |
-| `POST` | `/moderate` | Allows moderators to take actions |
+| `POST` | `/moderation/analyse` | Analyzes a message and returns risk score |
+| `GET` | `/moderation/flagged` | Retrieves flagged messages for review |
+| `POST` | `/moderation/actions` | Allows moderators to take actions |
 
 ## AI/ML Pipeline
 1. **Message Preprocessing**: Tokenization, stopword removal, and vectorization.

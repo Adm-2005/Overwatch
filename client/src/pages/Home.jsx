@@ -13,8 +13,6 @@ const Home = () => {
       <Hero />
       <ScrollingSection />
       <FeaturesSection />
-    
-      {/* Add More Sections Here */}
       <ContactSection />
       <Footer />
     </div>

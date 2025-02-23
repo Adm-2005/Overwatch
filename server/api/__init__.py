@@ -8,6 +8,7 @@ from flask_jwt_extended import JWTManager
 # internal imports
 from config import Config
 from errors import register_error_handlers
+from api.discord.utils import start_discord_bot
 
 mongo = PyMongo()
 jwt = JWTManager()
@@ -19,7 +20,7 @@ def create_app(config_object: Config) -> Flask:
     app.config.from_object(config_object)
     CORS(
         app,
-        origins=[app.config.get('CLIENT_URL')],
+        origins=[app.config.get('CLIENT_URL'), app.config.get('API_URL')],
         allow_headers=['Authorization', 'Content-Type'],
         supports_credentials=True
     )
@@ -31,8 +32,20 @@ def create_app(config_object: Config) -> Flask:
 
     # importing blueprints inside the factory function
     # to avoid circular imports
-    from user import user_bp
+    from api.user import user_bp
+    from api.discord import disc_bp
+    from api.telegram import tele_bp
+    from api.moderation import mod_bp
 
     app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(disc_bp, url_prefix='/discord')
+    app.register_blueprint(tele_bp, url_prefix='/telegram')
+    app.register_blueprint(mod_bp, url_prefix='/moderation')
+
+    # starting bots for all active and connected discord servers 
+    active_servers = mongo.db.discord_servers.find({ 'active': 'True' })
+
+    for server in active_servers:
+        start_discord_bot(server.server_id)
 
     return app

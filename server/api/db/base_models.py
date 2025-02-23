@@ -1,6 +1,8 @@
 # external imports
-from typing import Dict, Any
-from pydantic import BaseModel
+import pytz
+from datetime import datetime
+from pydantic import BaseModel, Field
+from typing import Dict, Any, Optional
 from fastapi.encoders import jsonable_encoder
 
 # internal imports
@@ -18,3 +20,19 @@ class Serialization(BaseModel):
             data.pop('_id', None)
 
         return data
+
+class PlatformGroup(Serialization):
+    """Base model for group entities across platforms."""
+    id: Optional[PydanticObjectId] = Field(default=None, alias='_id')
+    name: str
+    owner_id: str
+    active: bool = True
+    created_at: datetime = Field(default_factory=datetime.now(tz=pytz.timezone('Asia/Kolkata')))
+
+class Message(Serialization):
+    id: Optional[PydanticObjectId] = Field(alias='_id', default=None)
+    user_id: str
+    username: str 
+    group_id: Optional[PydanticObjectId] = Field(default=None)
+    content: str
+    timestamp: datetime
