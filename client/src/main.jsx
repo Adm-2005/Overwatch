@@ -1,11 +1,20 @@
-import { RouterProvider } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
-import { router } from './utils/config';
-import { StrictMode } from 'react';
-import './index.css';
+import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./utils/config";
+import { AppProvider } from "./context/contextManager";
+import "./index.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <AppProvider>
+        <RouterProvider router={router} />
+      </AppProvider>
+    </StrictMode>
+  );
+} else {
+  console.error("Root element not found");
+}
