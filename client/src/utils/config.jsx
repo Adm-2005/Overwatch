@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         element: <Dashboard />
     },
     {
-        path: '/connection',
+        path: '/connection/:platform',
         element: <Connection />
     }
 ]);

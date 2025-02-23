@@ -27,7 +27,7 @@ class Message(Serialization):
     group_id: str
     username: str
     content: str
-    timestamp: datetime = Field(default_factory=datetime.now(tz=pytz.timezone('Asia/Kolkata')))
+    timestamp: datetime = Field(default_factory=lambda:datetime.now(tz=pytz.timezone('Asia/Kolkata')))
 
 class FlaggedMessage(Message):
     """Stores flagged messages after AI analysis."""
@@ -43,7 +43,7 @@ class MarkedUser(Serialization):
     username: str
     group_id: str
     infractions: int = 1
-    last_infraction: datetime = Field(default_factory=datetime.now(tz=pytz.timezone('Asia/Kolkata')))
+    last_infraction: datetime = Field(default_factory=lambda:datetime.now(tz=pytz.timezone('Asia/Kolkata')))
     flagged_messages: List[str] = []
 
 class Alert(Serialization):
@@ -54,4 +54,4 @@ class Alert(Serialization):
     message_id: str
     reason: str
     reviewed: bool = False
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda:datetime.now(tz=pytz.timezone('Asia/Kolkata')))

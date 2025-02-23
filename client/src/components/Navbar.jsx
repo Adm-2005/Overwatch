@@ -31,6 +31,10 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex items-center space-x-8">
+        <a href="/dashboard" onClick={handleScrollToFeature} className="text-[#133996] text-lg font-semibold hover:text-gray-600 transition">
+          Dashboard
+        </a>
+
         <a href="#feature" onClick={handleScrollToFeature} className="text-[#133996] text-lg font-semibold hover:text-gray-600 transition">
           Features
         </a>

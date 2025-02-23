@@ -49,9 +49,9 @@ def create_app(config_object: Config) -> Flask:
     active_telegram_groups = mongo.db.telegram_groups.find({ 'active': True })
 
     for server in active_discord_servers:
-        start_discord_bot(server["server_id"])
+        start_discord_bot(server['server_id'])
 
     for group in active_telegram_groups:
-        start_telegram_bot(group["group_id"], group["bot_token"])
+        start_telegram_bot(group['group_id'], app.config.get('TELEGRAM_BOT_TOKEN'))
 
     return app

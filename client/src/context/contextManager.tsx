@@ -6,15 +6,15 @@ interface User {
   email: string;
   role: string;
   handles?: string[];
-  lastActive?: Date;
+  last_active?: Date;
 }
 
 interface DiscordServer {
-  serverId: string;
+  server_id: string;
   name: string;
-  ownerId: string;
-  channelsMonitored: string[];
-  lastUpdated?: Date;
+  owner_id: string;
+  channels_monitored: string[];
+  last_updated?: Date;
 }
 
 interface ContextType {
